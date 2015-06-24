@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+	   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+       <title>TUGAS 2 BASIS DATA</title>
+       <link rel="stylesheet" href="css/style.css"/>
+	   <script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
+       <link href='http://fonts.googleapis.com/css?family=Wellfleet' rel='stylesheet' type='text/css'>
+	   <link href='http://fonts.googleapis.com/css?family=Wellfleet' rel='stylesheet' type='text/css'>
+	   <link href='http://fonts.googleapis.com/css?family=Arvo:400,700,400italic,700italic' rel='stylesheet' type='text/css'>	
+	   <link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
+	   <link href='http://fonts.googleapis.com/css?family=Goudy+Bookletter+1911' rel='stylesheet' type='text/css'>
+	<script>
+   
+<!----- JQUERY FOR SLIDING NAVIGATION --->   
+$(document).ready(function() {
+  $('a[href*=#]').each(function() {
+    if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'')
+    && location.hostname == this.hostname
+    && this.hash.replace(/#/,'') ) {
+      var $targetId = $(this.hash), $targetAnchor = $('[name=' + this.hash.slice(1) +']');
+      var $target = $targetId.length ? $targetId : $targetAnchor.length ? $targetAnchor : false;
+       if ($target) {
+         var targetOffset = $target.offset().top;
+
+<!----- JQUERY CLICK FUNCTION REMOVE AND ADD CLASS "ACTIVE" + SCROLL TO THE #DIV--->   
+         $(this).click(function() {
+            $("#nav li a").removeClass("active");
+            $(this).addClass('active');
+           $('html, body').animate({scrollTop: targetOffset}, 1000);
+           return false;
+         });
+      }
+    }
+  });
+
+});
+
+
+</script>
+
+
+ </head> 
+	
+<body>
+
+<div id="space">
+</div>
+
+<header id="header">
+<div class="content">
+<div id="logo"><a href=""> TUGAS BASDAT </a></div>
+
+<nav id="nav">
+	<ul>
+		<li><a href="#slide1" class="active" title="Next Section" >Home</a></li>
+		<li><a href="#slide2" title="Next Section">About</a></li>
+		<li><a href="#slide3" title="Next Section">Data</a></li>
+		<li><a href="#slide4" title="Next Section">Graph</a></li>
+		<li><a href="#slide5" title="Next Section">Profile</a></li>
+	</ul>
+</nav>
+</div>
+</header>	
+ 	
+	<div id="slide1">
+		<div class="content">
+			<div id="christmas_tree"> </div>
+			<div id="snowflakes1"></div>
+			<div id="snowflakes2"></div>
+            <h2>Judul</h2>
+		    <h1>Sub judul</h1>
+		    <div id="divider"> </div>
+		     <h3>Kelompok Marqie</h3>
+           <div id="ribbon"></div>
+	       <div id="new_year"> </div>
+		</div> 
+    </div> 
+
+	<div id="slide2">
+		<div class="content" >
+            <div class="container">
+		    <h3 class="quotes">“lalalala”</h3>
+		  
+		  <h4 class="sub_gray">About</h4>
+		</div> 
+		</div> 
+    </div> 
+	
+	
+   <div id="slide3">
+		<div class="content">
+			   <div class="container">
+		       <h3 class="quotes">  </h3>
+		       <h4 class="sub_white">Data</h4>
+		    </div> 
+		</div> 
+    </div> 
+	
+	
+	<div id="slide4">
+		<div class="content">
+              <div class="container">
+		    <h3 class="quotes"> </h3>
+		   <h4 class="sub_gray">Graph</h4>
+		</div> 
+		</div> 
+    </div> 
+	
+	
+	<div id="slide5">
+		<div class="content">
+           <div class="container">
+		   
+		    <div class="profile_widget" >
+					<div class="pw_avatar" >
+						<img class="img-circle" src="img/fiqie1.jpg" width="220px" height="200px"/>
+					</div>
+				<div class="pw_info" >
+					<h1>Fiqie Ulya </h1>
+					<h2>13514602</h2>
+					<p>Panda lover</p>
+				</div>
+			</div>
+			<div class="profile_widget" >
+					<div class="pw_avatar" >
+						<img class="img-circle" src="img/marco.jpg" width="220px" height="200px" />
+					</div>
+				<div class="pw_info" >
+					<h1>Marco Orlando </h1>
+					<h2>13513xxx</h2>
+					<p>Panda lover</p>
+				</div>
+			</div>	
+		    <!--img class="img-circle" src="img/fiqie.jpg" width="220px" height="200px" /-->
+			<!--img class="img-circle" src="img/marco.jpg" width="220px" height="200px" /-->
+		     <!--h4 class="sub_white">Profile</h4-->
+		   </div> 
+		</div> 
+		
+
+    </div> 
+
+
+</body>
+</html>
