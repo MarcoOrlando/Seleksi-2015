@@ -4,42 +4,11 @@
 	   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
        <title>TUGAS 2 BASIS DATA</title>
        <link rel="stylesheet" href="css/style.css"/>
-	   <script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
        <link href='http://fonts.googleapis.com/css?family=Wellfleet' rel='stylesheet' type='text/css'>
 	   <link href='http://fonts.googleapis.com/css?family=Wellfleet' rel='stylesheet' type='text/css'>
 	   <link href='http://fonts.googleapis.com/css?family=Arvo:400,700,400italic,700italic' rel='stylesheet' type='text/css'>	
 	   <link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
 	   <link href='http://fonts.googleapis.com/css?family=Goudy+Bookletter+1911' rel='stylesheet' type='text/css'>
-	<script>
-   
-<!----- JQUERY FOR SLIDING NAVIGATION --->   
-$(document).ready(function() {
-  $('a[href*=#]').each(function() {
-    if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'')
-    && location.hostname == this.hostname
-    && this.hash.replace(/#/,'') ) {
-      var $targetId = $(this.hash), $targetAnchor = $('[name=' + this.hash.slice(1) +']');
-      var $target = $targetId.length ? $targetId : $targetAnchor.length ? $targetAnchor : false;
-       if ($target) {
-         var targetOffset = $target.offset().top;
-
-<!----- JQUERY CLICK FUNCTION REMOVE AND ADD CLASS "ACTIVE" + SCROLL TO THE #DIV--->   
-         $(this).click(function() {
-            $("#nav li a").removeClass("active");
-            $(this).addClass('active');
-           $('html, body').animate({scrollTop: targetOffset}, 1000);
-           return false;
-         });
-      }
-    }
-  });
-
-});
-
-
-</script>
-
-
  </head> 
 	
 <body>
@@ -100,89 +69,22 @@ $(document).ready(function() {
 	
 	
 	<div id="slide4">
+	 <div class="graph" id="grafik"></div>
 		<div class="content">
-              <div class="container">
-		    <h3 class="quotes"> </h3>
-			<script>
-
-var margin = {top: 40, right: 20, bottom: 30, left: 40},
-    width = 960 - margin.left - margin.right,
-    height = 500 - margin.top - margin.bottom;
-
-var formatPercent = d3.format(".0%");
-
-var x = d3.scale.ordinal()
-    .rangeRoundBands([0, width], .1);
-
-var y = d3.scale.linear()
-    .range([height, 0]);
-
-var xAxis = d3.svg.axis()
-    .scale(x)
-    .orient("bottom");
-
-var yAxis = d3.svg.axis()
-    .scale(y)
-    .orient("left")
-    .tickFormat(formatPercent);
-
-var tip = d3.tip()
-  .attr('class', 'd3-tip')
-  .offset([-10, 0])
-  .html(function(d) {
-    return "<strong>Frequency:</strong> <span style='color:red'>" + d.frequency + "</span>";
-  })
-
-var svg = d3.select("body").append("svg")
-    .attr("width", width + margin.left + margin.right)
-    .attr("height", height + margin.top + margin.bottom)
-  .append("g")
-    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-
-svg.call(tip);
-
-d3.tsv("data.tsv", type, function(error, data) {
-  x.domain(data.map(function(d) { return d.letter; }));
-  y.domain([0, d3.max(data, function(d) { return d.frequency; })]);
-
-  svg.append("g")
-      .attr("class", "x axis")
-      .attr("transform", "translate(0," + height + ")")
-      .call(xAxis);
-
-  svg.append("g")
-      .attr("class", "y axis")
-      .call(yAxis)
-    .append("text")
-      .attr("transform", "rotate(-90)")
-      .attr("y", 6)
-      .attr("dy", ".71em")
-      .style("text-anchor", "end")
-      .text("Frequency");
-
-  svg.selectAll(".bar")
-      .data(data)
-    .enter().append("rect")
-      .attr("class", "bar")
-      .attr("x", function(d) { return x(d.letter); })
-      .attr("width", x.rangeBand())
-      .attr("y", function(d) { return y(d.frequency); })
-      .attr("height", function(d) { return height - y(d.frequency); })
-      .on('mouseover', tip.show)
-      .on('mouseout', tip.hide)
-
-});
-
-function type(d) {
-  d.frequency = +d.frequency;
-  return d;
-}
-
-</script>
+              
+			 
+		<div class="container">
 			
-			
-		   <h4 class="sub_gray">Graph</h4>
 		</div> 
+		<div class=navi-option>
+					<select id="kategori">
+						<option value="0">Hasil industri</option>
+						<option value="1">Hasil pertambangan dan sektor lainnya</option>
+						<option value="2">Hasil pertanian</option>
+					</select>
+					<select id="jenis"></select>
+					<button id="ubah">klik</button>
+			</div>
 		</div> 
     </div> 
 	
@@ -207,7 +109,7 @@ function type(d) {
 					</div>
 				<div class="pw_info" >
 					<h1>Marco Orlando </h1>
-					<h2>13513xxx</h2>
+					<h2>13513038</h2>
 					<p>Panda lover</p>
 				</div>
 			</div>	
@@ -220,6 +122,133 @@ function type(d) {
 
     </div> 
 
+<script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
+<script>
+
+var option_file = [
+	{"Alas Kaki": "tsv/Hasil industri/Alas kaki.tsv", "Asam berlemak" : "tsv/Hasil industri/Asam berlemak.tsv"},
+	{"Batu bara":"tsv/Hasil pertambangan dan sektor lainnya/Batubara.tsv", "Bauksit":"tsv/Hasil pertambangan dan sektor lainnya/Bauksit.tsv"}
+]
+
+var ubah_opsi = function (e){
+	var list_jenis = option_file[$(this).val()];
+	
+	var select_jenis = $("#jenis");
+
+	select_jenis.empty();
+	$.each(list_jenis, function(key,value) {
+	  select_jenis.append($("<option></option>")
+	     .attr("value", value).text(key));
+	});
+
+	console.log(options);
+	$("#jenis").inner(options);
+}
+
+var ubah_grafik = function (e) {
+
+	var margin = {top: 40, right: 30, bottom: 30, left: 40},
+	    width = 1000 - margin.left - margin.right,
+	    height = 500 - margin.top - margin.bottom;
+
+	var formatPercent = d3.format("");
+
+	var x = d3.scale.ordinal()
+	    .rangeRoundBands([0, width], .1);
+
+	var y = d3.scale.linear()
+	    .range([height, 0]);
+
+	var xAxis = d3.svg.axis()
+	    .scale(x)
+	    .orient("bottom");
+
+	var yAxis = d3.svg.axis()
+	    .scale(y)
+	    .orient("left")
+	    .tickFormat(formatPercent);
+
+	var tip = d3.tip()
+	  .attr('class', 'd3-tip')
+	  .offset([-10, 0])
+	  .html(function(d) {
+	    return "<strong>nilai_ekspor:</strong> <span style='color:red'>" + d.nilai_ekspor + "</span>";
+	  })
+
+	d3.select("svg").remove()
+
+	var svg = d3.select("#grafik").append("svg")
+	    .attr("width", width + margin.left + margin.right)
+	    .attr("height", height + margin.top + margin.bottom)
+	  .append("g")
+	    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+	svg.call(tip);
+
+	d3.tsv($("#jenis").val(), type, function(error, data) {
+	  x.domain(data.map(function(d) { return d.tahun; }));
+	  y.domain([0, d3.max(data, function(d) { return d.nilai_ekspor; })]);
+
+	  svg.append("g")
+	      .attr("class", "x axis")
+	      .attr("transform", "translate(0," + height + ")")
+	      .call(xAxis);
+
+	  svg.append("g")
+	      .attr("class", "y axis")
+	      .call(yAxis)
+	    .append("text")
+	      .attr("transform", "rotate(-90)")
+	      .attr("y", 6)
+	      .attr("dy", ".71em")
+	      .style("text-anchor", "end")
+	      .text("nilai_ekspor (ribu USD)");
+
+	  svg.selectAll(".bar")
+	      .data(data)
+	    .enter().append("rect")
+	      .attr("class", "bar")
+	      .attr("x", function(d) { return x(d.tahun); })
+	      .attr("width", x.rangeBand())
+	      .attr("y", function(d) { return y(d.nilai_ekspor); })
+	      .attr("height", function(d) { return height - y(d.nilai_ekspor); })
+	      .on('mouseover', tip.show)
+	      .on('mouseout', tip.hide)
+
+	});
+
+	function type(d) {
+	  d.nilai_ekspor = +d.nilai_ekspor;
+	  return d;
+	}
+
+}
+
+$(function(){
+	$("#kategori").change(ubah_opsi);
+	$("#ubah").click(ubah_grafik);
+
+	  $('a[href*=#]').each(function() {
+	    if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'')
+	    && location.hostname == this.hostname
+	    && this.hash.replace(/#/,'') ) {
+	      var $targetId = $(this.hash), $targetAnchor = $('[name=' + this.hash.slice(1) +']');
+	      var $target = $targetId.length ? $targetId : $targetAnchor.length ? $targetAnchor : false;
+	       if ($target) {
+	         var targetOffset = $target.offset().top;
+	         $(this).click(function() {
+	            $("#nav li a").removeClass("active");
+	            $(this).addClass('active');
+	           $('html, body').animate({scrollTop: targetOffset}, 1000);
+	           return false;
+	         });
+	      }
+	    }
+	  });
+
+	});
+
+</script>
 
 </body>
 </html>
