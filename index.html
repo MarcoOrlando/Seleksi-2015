@@ -26,8 +26,8 @@
 		<li><a href="#slide1" class="active" title="Next Section" >Home</a></li>
 		<li><a href="#slide2" title="Next Section">About</a></li>
 		<li><a href="#slide3" title="Next Section">Data</a></li>
-		<li><a href="#slide4" title="Next Section">Graph</a></li>
-		<li><a href="#slide5" title="Next Section">Profile</a></li>
+		<li><a href="#slide4" title="Next Section">Profile</a></li>
+		<li><a href="#slide5" title="Next Section">Graph</a></li>
 	</ul>
 </nav>
 </div>
@@ -68,31 +68,10 @@
     </div> 
 	
 	
-	<div id="slide4">
-	 <div class="graph" id="grafik"></div>
-		<div class="content">
-              
-			 
-		<div class="container">
-			
-		</div> 
-		<div class=navi-option>
-					<select id="kategori">
-						<option value="0">Hasil industri</option>
-						<option value="1">Hasil pertambangan dan sektor lainnya</option>
-						<option value="2">Hasil pertanian</option>
-					</select>
-					<select id="jenis"></select>
-					<button id="ubah">klik</button>
-			</div>
-		</div> 
-    </div> 
-	
-	
-	<div id="slide5">
-		<div class="content">
-           <div class="container">
-		   
+		<div id="slide4">
+
+			<div class="content">
+        <div class="container">	   
 		    <div class="profile_widget" >
 					<div class="pw_avatar" >
 						<img class="img-circle" src="img/fiqie1.jpg" width="220px" height="200px"/>
@@ -120,13 +99,34 @@
 		</div> 
 		
 
+		
     </div> 
+	
+	
+	<div id="slide5">
+		<div class="content" style="margin-top:100px;">
+			<select id="kategori"> 
+				<option value="0" selected="selected">[silakan pilih]</option>
+				<option value="1">Hasil industri</option>
+				<option value="2">Hasil pertambangan dan sektor lainnya</option>
+				<option value="3">Hasil pertanian</option>
+			</select>
+			<select id="jenis">
+				<option value="" selected="selected">[silakan pilih]</option>
+			</select>
+			<button id="ubah">klik</button>
+
+			<div class="graph" id="grafik"></div>	
+		</div> 
+	</div> 
 
 <script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
 <script>
 
 var option_file = [
+  {"[silakan pilih]": ""},
 	{"Alas Kaki": "tsv/Hasil industri/Alas kaki.tsv", "Asam berlemak" : "tsv/Hasil industri/Asam berlemak.tsv"},
+	{"Batu bara":"tsv/Hasil pertambangan dan sektor lainnya/Batubara.tsv", "Bauksit":"tsv/Hasil pertambangan dan sektor lainnya/Bauksit.tsv"},
 	{"Batu bara":"tsv/Hasil pertambangan dan sektor lainnya/Batubara.tsv", "Bauksit":"tsv/Hasil pertambangan dan sektor lainnya/Bauksit.tsv"}
 ]
 
@@ -145,11 +145,16 @@ var ubah_opsi = function (e){
 	$("#jenis").inner(options);
 }
 
+var type = function type(d) {
+  d.nilai_ekspor = +d.nilai_ekspor;
+  return d;
+}
+
 var ubah_grafik = function (e) {
 
 	var margin = {top: 40, right: 30, bottom: 30, left: 40},
-	    width = 1000 - margin.left - margin.right,
-	    height = 500 - margin.top - margin.bottom;
+	    width = 950 - margin.left - margin.right,
+	    height = 400 - margin.top - margin.bottom;
 
 	var formatPercent = d3.format("");
 
@@ -217,10 +222,6 @@ var ubah_grafik = function (e) {
 
 	});
 
-	function type(d) {
-	  d.nilai_ekspor = +d.nilai_ekspor;
-	  return d;
-	}
 
 }
 

@@ -162,18 +162,18 @@ ul.built { list-style: none; margin: 0 auto; width: 730px; }
 }
 
 #slide4{
-	background-color: #fff;
+	background-color: rgba(178,165,84,0.7);
 	color: #333333;
-	height: 15px;
+	height: 550px;
 	padding: 50px 0;
 }
 
 #slide5{
-	background-color: rgba(178,165,84,0.7);
+	background-color: #fff;
 	/*background: url(../img/slide5.jpg) 50% 0 no-repeat fixed;*/
-	height: 500px;
+	height: 800px;
 	margin: 0 auto;
-	padding: 100px 0;
+	padding: 50px 0;
 	color: #fff;
 	background-size: cover;
 }
