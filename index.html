@@ -38,8 +38,8 @@
 			<div id="christmas_tree"> </div>
 			<div id="snowflakes1"></div>
 			<div id="snowflakes2"></div>
-            <h2>Judul</h2>
-		    <h1>Sub judul</h1>
+            <h2>Visualisasi Data</h2>
+		    <h1>Tren Ekspor Non Migas 2005 - 2013</h1>
 		    <div id="divider"> </div>
 		     <h3>Kelompok Marqie</h3>
            <div id="ribbon"></div>
@@ -50,9 +50,9 @@
 	<div id="slide2">
 		<div class="content" >
             <div class="container">
-		    <h3 class="quotes">“lalalala”</h3>
+		    <h4 class="quotes">Indonesia mempunyai banyak sekali potensi untuk dikembangkan sebagai primadona perdanganan ekspor Indonesia disamping sektor migas, seperti sektor pertanian (Biji coklat, kopi, rempah-rempah,dll), sektor industri (makanan olahan, tekstil, bahan kimia), dan lain-lain. Akan tetapi, belum banyak pihak yang mengetahui potensi tersebut. </h4>
 		  
-		  <h4 class="sub_gray">About</h4>
+		  <h4 class="sub_gray"></h4>
 		</div> 
 		</div> 
     </div> 
@@ -61,8 +61,8 @@
    <div id="slide3">
 		<div class="content">
 			   <div class="container">
-		       <h3 class="quotes">  </h3>
-		       <h4 class="sub_white">Data</h4>
+		       <h3 class="quotes">  Dalam Visualisasi data ini, penulis ingin melakukan visualisasi nilai ekspor non migas di Indonesia dalam berbagai sektor dan dalam lini waktu. Diharapkan dalam visualisasi ini dapat dibaca kinerja komoditas ekspor non migas di Indonesia dan tren-tren yang mengikutinya. Visualisasi data ini diharapkan dapat berguna dan menjadi pertimbangan bagi pemerintah, swasta, maupun masyarakat sipil untuk bersama-sama membangun perekonomian Indonesia menjadi lebih baik lagi.</h3>
+		       <h4 class="sub_white"></h4>
 		    </div> 
 		</div> 
     </div> 
@@ -110,6 +110,7 @@
 				<option value="1">Hasil industri</option>
 				<option value="2">Hasil pertambangan dan sektor lainnya</option>
 				<option value="3">Hasil pertanian</option>
+				<option value="4">Ekspor yang tidak dapt diklasifikasikan</option>
 			</select>
 			<select id="jenis">
 				<option value="" selected="selected">[silakan pilih]</option>
@@ -125,9 +126,10 @@
 
 var option_file = [
   {"[silakan pilih]": ""},
-	{"Alas Kaki": "tsv/Hasil industri/Alas kaki.tsv", "Asam berlemak" : "tsv/Hasil industri/Asam berlemak.tsv"},
-	{"Batu bara":"tsv/Hasil pertambangan dan sektor lainnya/Batubara.tsv", "Bauksit":"tsv/Hasil pertambangan dan sektor lainnya/Bauksit.tsv"},
-	{"Batu bara":"tsv/Hasil pertambangan dan sektor lainnya/Batubara.tsv", "Bauksit":"tsv/Hasil pertambangan dan sektor lainnya/Bauksit.tsv"}
+	{"Alas Kaki": "tsv/Hasil industri/Alas kaki.tsv"},
+	{"Batu bara":"tsv/Hasil pertambangan dan sektor lainnya/Batubara.tsv", "Bauksit":"tsv/Hasil pertambangan dan sektor lainnya/Bauksit.tsv", "Biji nikel" : "tsv/Hasil pertambangan dan sektor lainnya/Biji nikel.tsv", "Biji tembaga":"tsv/Hasil pertambangan dan sektor lainnya/Biji tembaga.tsv", "Granit" : "tsv/Hasil pertambangan dan sektor lainnya/Granit.tsv", "Hasil pertambangan lainnya": "tsv/Hasil pertambangan dan sektor lainnya/Hasil pertambangan lainnya.tsv","Hasil sektor lainnya" : "tsv/Hasil pertambangan dan sektor lainnya/Hasil sektor lainnya.tsv"},
+	{"Bahan nabati":"tsv/Hasil pertanian/Bahan nabati.tsv", "Biji coklat":"tsv/Hasil pertanian/Biji coklat.tsv", "Biji kopi" : "tsv/Hasil pertanian/Biji kopi.tsv", "Buah-buahan": "tsv/Hasil pertanian/Buah-buahan.tsv", "Damar dan getah damar": "tsv/Hasil pertanian/Damar dan getah damar.tsv", "Hasil pertanian lainnya": "tsv/Hasil pertanian/Hasil pertanian lainnya.tsv", "Ikan dan lain-lain": "tsv/Hasil pertanian/Ikan dan lain-lain.tsv", "Karet alam" : "tsv/Hasil pertanian/Karet alam.tsv", "Rempah-rempah" : "tsv/Hasil pertanian/Rempah-rempah.tsv", "Sayur-sayuran.tsv": "tsv/Hasil pertanian/Sayur-sayuran.tsv", "Teh": "tsv/Hasil pertanian/Teh.tsv", "Tembakau": "tsv/Hasil pertanian/Tembakau.tsv", "Udang" : "tsv/Hasil pertanian/Udang.tsv"},
+	{"Ekspor yang tidak dapt diklasifikasikan":"tsv/Ekspor yang tidak dapt diklasifikasikan/Ekspor yang tidak dapt diklasifikasikan.tsv"}
 ]
 
 var ubah_opsi = function (e){
@@ -152,7 +154,7 @@ var type = function type(d) {
 
 var ubah_grafik = function (e) {
 
-	var margin = {top: 40, right: 30, bottom: 30, left: 40},
+	var margin = {top: 40, right: 30, bottom: 30, left: 80},
 	    width = 950 - margin.left - margin.right,
 	    height = 400 - margin.top - margin.bottom;
 
